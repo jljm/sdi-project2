@@ -2,9 +2,10 @@
 // Jamal Johnson
 
 // Melon Variables
-var fruitMelon = 4;
-var fruitMelonNeed = 16;
-var enoughMelons;
+var fruitMelon = 8;
+var fruitMelonNeed = 12;
+var enoughMelons;	// Are there enough melons: True/False
+var storeBuyCount;	// How much was stored or bought.
 
 // -- Boolean Function
 // Got enough ______?
@@ -23,8 +24,54 @@ var invCheck = function( item, have, need )
 	}
 }
 
+// -- Number Function
+// How much to buy? How much to store?
+var invDo = function( item, have, need )
+{
+	var difference = need - have;
+
+	// Exactly enough, do nothing.
+	if( difference === 0)
+	{
+		console.log( "We have exactly enough " + item + "!" );
+		return difference;
+	}
+
+	// Not enough, purchase more
+	if( difference > 0 )
+	{
+		for(var needed = difference; needed > 0; needed-- )
+		{
+			console.log( "Buying 1 " + item + "! Need " + (needed - 1) + " more!" )
+		}
+
+		return difference;
+	}
+
+	// Too much, store extras
+	if( difference < 0 )
+	{
+		var nDifference = difference;
+		difference = 0;
+
+		while( nDifference < 0 )	// Flip difference to a positive value.
+		{
+			nDifference++;
+			difference++;
+		}
+
+		for(var toStore = difference; toStore > 0; toStore-- )
+		{
+			console.log( "Storing 1 " + item + "! " + (toStore - 1) + " more to put away!" )
+		}
+		return difference;
+	}
+
+}
+
 
 // -- Main
 // Melon check!
 console.log( "We need " + fruitMelonNeed + " melons! Do we have enough?" );
 enoughMelons = invCheck( "melons", fruitMelon, fruitMelonNeed );
+storeBuyCount = invDo( "melon", fruitMelon, fruitMelonNeed);
