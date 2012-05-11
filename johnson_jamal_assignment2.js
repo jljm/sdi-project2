@@ -3,9 +3,13 @@
 
 // Melon Variables
 var fruitMelon = 8;
-var fruitMelonNeed = 12;
+var fruitMelonNeed = 14;
 var enoughMelons;	// Are there enough melons: True/False
 var storeBuyCount;	// How much was stored or bought.
+
+// Greeting Card Variables
+var sender = "Kent"
+var receiver = "Louis"
 
 // -- Boolean Function
 // Got enough ______?
@@ -66,7 +70,17 @@ var invDo = function( item, have, need )
 		}
 		return difference;
 	}
+}
 
+// -- String Function
+// Generate greeting card
+
+var greetCard = function( to, from )
+{
+	var greeting = "To: " + to + '\n' +
+				   "From: " + from;
+
+	return greeting;
 }
 
 
@@ -75,3 +89,5 @@ var invDo = function( item, have, need )
 console.log( "We need " + fruitMelonNeed + " melons! Do we have enough?" );
 enoughMelons = invCheck( "melons", fruitMelon, fruitMelonNeed );
 storeBuyCount = invDo( "melon", fruitMelon, fruitMelonNeed);
+
+console.log( "The card for our first order will read: " + '\n' + greetCard( receiver, sender ) );
